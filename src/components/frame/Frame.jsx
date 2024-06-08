@@ -67,7 +67,7 @@ const Frame = () => {
     
     <div className='frame'>
       <div className="container">
-        <div className="title">Img To Text Converter</div>
+        <div className="title">Image To Text Converter</div>
         <div className="desc">Created by Alper Ertugrul</div> 
         
         <div className="bottom">
