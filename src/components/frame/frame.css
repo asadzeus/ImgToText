@@ -1,5 +1,6 @@
 .frame{
-    background-color: rgb(41, 190, 176);
+    background: rgb(41,190,176);
+background: linear-gradient(0deg, rgba(41,190,176,1) 75%, rgba(18,153,140,1) 100%);
     width: 100%;
     height: 100vh;
     display: flex;
@@ -10,8 +11,8 @@
 }
 
 .container{
-    width: 60%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,6 +26,45 @@
     letter-spacing: 5px;
 }
 
+.desc{
+    margin-bottom: 10px;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.bottom{
+    border-radius: 10px;
+    width: 80%;
+    height: 270px;
+    background-color: rgb(38, 180, 165);
+    border: 1px solid black;
+    -webkit-box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
+    -moz-box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
+    box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding:35px;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    height: 200px;
+    aspect-ratio:  3 / 2;
+    -webkit-box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
+    -moz-box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
+    box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
+    border-radius: 10px;
+}
+
 .btn{
     letter-spacing: 2px;
     background-color: rgb(37, 86, 192);
@@ -32,7 +72,7 @@
     padding: 15px 20px;
     color:white;
     border-radius: 10px;
-    margin: 10px 0px;
+    margin-top: 10px;
     transition: 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -45,25 +85,24 @@
     transform: scale(1.1);
 }
 
-input[type="file"]{
-    display: none;
-}
-
-.bottom{
-    background-color: red;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    height: 100%;
+.right{
+    height: 250px;
     width: 100%;
+    flex: 3;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-.textcontainer{
+.text{
     border-radius: 10px;
     padding: 15px;
-    height: 85%;
-    flex: 3;
+    width: 100%;
+    height: 70%;
+    overflow-y: auto;
     background-color: white;
     border: 1px solid black;
     -webkit-box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
@@ -71,11 +110,49 @@ input[type="file"]{
 box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
 }
 
-.imgcontainer{
-    background-color: bisque;
-    flex: 1;
+.copybtn{
+    background-color: rgb(37, 86, 192);
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 65px;
+    height:25px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
+.copybtn:hover{
+    background-color: red;
+    transform: scale(1.1);
+}
+
+.progress-bar-container {
+    height: 35px;
+    width: 400px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: rgba(90, 34, 173, 0.434);
+    position: absolute;
+  }
+  
+  .progress-bar {
+    background-color: rgb(37, 49, 175);
+    height: 100%;
+    width: 0;
+    transition: width 0.3s;
+    border-radius: 10px;
+  }
+  
+  .progress-bar-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
