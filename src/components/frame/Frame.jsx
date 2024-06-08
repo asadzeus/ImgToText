@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useCallback } from 'react'
 import './frame.css'
 import { createWorker } from 'tesseract.js'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import {useDropzone} from 'react-dropzone'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Frame = () => {
 
@@ -9,6 +11,11 @@ const Frame = () => {
   const [textResult, setTextResult] = useState("Upload file to convert text.");
   const [copyT, setCopyT] = useState("Copy");
   const [progress, setProgress] = useState(0);
+
+  const onDrop = useCallback(acceptedFiles => {
+     setSelectedImage(acceptedFiles[0]);
+  }, [])
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   function handleImg (e) {
     setSelectedImage(e.target.files[0]);
@@ -27,16 +34,14 @@ const Frame = () => {
     await worker.load();
     await worker.loadLanguage('eng');
     await worker.initialize('eng');
-    
-    const { data: { text } } = await worker.recognize(image);
-    
+
+    let { data: { text } } = await worker.recognize(image);
+
+    if(document.getElementById("hints1")) text = "Upload file to convert text."; 
+
     await worker.terminate();
     return text;
   }
-
-  useEffect(() => {
-    console.log(`Progress: ${progress}%`);
-  }, [progress]);
 
   useEffect(() => {
     (async () => {
@@ -45,7 +50,6 @@ const Frame = () => {
         setProgress(0); 
         try {
           const text = await convertImgToText(selectedImage);
-          console.log(text);
           setTextResult(text);
         } catch (error) {
           console.error("Error converting image to text:", error);
@@ -63,6 +67,11 @@ const Frame = () => {
     }, 2000);
   }
 
+  function deleteImg(){
+    setSelectedImage(null);
+    setTextResult("Upload file to convert text.");
+  }
+
   return (
     
     <div className='frame'>
@@ -71,16 +80,31 @@ const Frame = () => {
         <div className="desc">Created by Alper Ertugrul</div> 
         
         <div className="bottom">
+
           <div className="left">
-            <img src={selectedImage ? URL.createObjectURL(selectedImage) : "/test2.png"} alt="" className='img'/>
-            <label htmlFor="upload" className='btn'>Upload Image</label>
-            <input type="file" id='upload' accept="image/*" onChange={handleImg} className="btn"/> 
+
+          <div {...getRootProps()} className='inputForm'>
+            {selectedImage && 
+              <img src={URL.createObjectURL(selectedImage)} alt="" className='img'/>
+            }
+
+          <input {...getInputProps()} />
+          {
+              !selectedImage  && !isDragActive && 
+              <div className='hints1' id='hints1'><div>Drag or click to upload files.</div></div>    
+          }
+          {
+              isDragActive  &&
+              <div className='hints2'><div>Drop the files here ...</div></div>      
+          }
+        </div>
+
+          <div className='deleteBtn' onClick={deleteImg}><DeleteIcon style={{fontSize:"33px", color:"white"}}/>Delete</div>
         </div>
         
 
           
         <div className="right">
-
           {selectedImage && progress > 0 && progress < 100 && (
             <div className="progress-bar-container">
               <div className='progress-bar-text'>{Math.floor(progress)} %</div>
