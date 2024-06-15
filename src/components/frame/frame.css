@@ -1,6 +1,5 @@
 .frame{
-    background: rgb(41,190,176);
-background: linear-gradient(0deg, rgba(41,190,176,1) 75%, rgba(18,153,140,1) 100%);
+    background: linear-gradient(0deg, rgba(41,190,176,1) 75%, rgba(18,153,140,1) 100%);
     width: 100%;
     height: 100vh;
     display: flex;
@@ -11,8 +10,8 @@ background: linear-gradient(0deg, rgba(41,190,176,1) 75%, rgba(18,153,140,1) 100
 }
 
 .container{
-    width: 70%;
-    height: 70%;
+    width: 85%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +36,7 @@ input[type="file"]{
 .bottom{
     border-radius: 10px;
     width: 80%;
-    height: 270px;
+    height: 40%;
     background-color: rgb(38, 180, 165);
     border: 1px solid black;
     -webkit-box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
@@ -54,6 +53,7 @@ input[type="file"]{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
 
 .inputForm{
@@ -61,7 +61,7 @@ input[type="file"]{
     background-color: rgba(203, 203, 203, 0.603);
     border-radius: 10px;
     height: 200px;
-    width: 300px;
+    width: 100%;
     background-image: none;
     display: flex;
     flex-direction: column;
@@ -133,12 +133,13 @@ input[type="file"]{
 .right{
     height: 250px;
     width: 100%;
-    flex: 3;
+    flex: 2;
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
     gap: 10px;
 }
 
@@ -177,7 +178,7 @@ box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
 
 .progress-bar-container {
     height: 35px;
-    width: 400px;
+    width: 80%;
     border-radius: 10px;
     border: 2px solid white;
     background-color: rgba(90, 34, 173, 0.434);
@@ -200,4 +201,23 @@ box-shadow: 0px 6px 22px -5px rgba(102,102,102,0.5);
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
+  }
+
+  @media (max-width: 850px){
+    .container{
+        height: 100%;
+    }
+
+    .title{
+        text-align: center;
+    }
+
+    .left{
+        width: 100%;
+    }
+
+    .bottom{
+        flex-direction: column;
+        height: 60%;
+    }
   }
